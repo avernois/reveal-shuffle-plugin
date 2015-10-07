@@ -9,8 +9,26 @@ Add the shuffle folder into your reveal.js plugin folder and include the followi
 
 ```
 // Shuffle plugin
-{ src: 'plugin/shuffle/shuffle.js', async: true }
+Reveal.initialize({
+    ...
+    // set the options, this is optional.
+    shuffle: {
+    	keepFirtst: 2, // default is 0
+    	keepLasts: 1 // default is 0
+	}
+    ...
+    dependencies: [
+        ...
+        // these declaration is mandatory
+        { src: 'plugin/shuffle/shuffle.js', async: true }
+    ]
+});
 ```
+* `keepFirsts` allow you to set how many slides should be kept at the begining. `keepFirsts: 2` means slides 1 and 2 will stay as slides 1 and 2.
+Note that the slide 0 (the one you land when you load the page) is always the first.
+* `keepLasts` allow you to set how many slides should be kept at the end (for thanks/credits)
+
+These two options are optional and may not be set at all if default values are fine for you. Default for these values is 0.
 
 ## Usage
 Use space, enter or right arrow to go forward the next shuffle slide. Use left arrow to fo backward.
@@ -28,7 +46,6 @@ If you want to reshuffle, just reload the page.
 
 * this is a very early work in progress (and I'm not yet convinced it will never become something else :)
 * it only works with 'flat' presentation (behaviour when there are nested slides is undefined)
-* it's an all or nothing.
 
 ## Todo
 

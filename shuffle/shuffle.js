@@ -1,4 +1,12 @@
 function Shuffled () {
+
+	var options = Reveal.getConfig().shuffle || {};
+	options.keepFirsts = options.keepFirsts || 0;
+	options.keepLasts = options.keepLasts || 0;
+
+	console.log(options.keepFirsts);
+	console.log(options.keepLasts);
+
 	function shuffle(array) {
 		var currentIndex = array.length, temporaryValue, randomIndex ;
 	 	while (0 !== currentIndex) {
@@ -9,12 +17,22 @@ function Shuffled () {
 			array[randomIndex] = temporaryValue;
 		}
 	}
-	
+
 	var shuffled = [];
-	for (var i = 1; i != Reveal.getTotalSlides(); ++i) shuffled.push(i)
+	for (var i = 1 + options.keepFirsts; i != (Reveal.getTotalSlides() - options.keepLasts); ++i) shuffled.push(i)
 	
 	shuffle(shuffled);
-	var currentIndex = -1;
+
+	for (var i = options.keepFirsts; i >= 0; i--) {
+		shuffled.unshift(i);
+	}
+
+	for (var i = Reveal.getTotalSlides() - options.keepLasts; i != Reveal.getTotalSlides(); i++) {
+		shuffled.push(i);
+	}
+
+	console.log(shuffled);
+	var currentIndex = 0;
 
 	this.next = function() {
 		currentIndex += 1;
