@@ -19,7 +19,7 @@ Reveal.initialize({
     ...
     dependencies: [
         ...
-        // these declaration is mandatory
+        // that declaration is mandatory
         { src: 'plugin/shuffle/shuffle.js', async: true }
     ]
 });
