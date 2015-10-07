@@ -4,9 +4,6 @@ function Shuffled () {
 	options.keepFirsts = options.keepFirsts || 0;
 	options.keepLasts = options.keepLasts || 0;
 
-	console.log(options.keepFirsts);
-	console.log(options.keepLasts);
-
 	function shuffle(array) {
 		var currentIndex = array.length, temporaryValue, randomIndex ;
 	 	while (0 !== currentIndex) {
@@ -31,7 +28,6 @@ function Shuffled () {
 		shuffled.push(i);
 	}
 
-	console.log(shuffled);
 	var currentIndex = 0;
 
 	this.next = function() {
