@@ -40,7 +40,6 @@ Use space, enter or right arrow to go forward the next shuffle slide. Use left a
 If you want to reshuffle, just reload the page.
 * The first page (landing page) will always the first page of your deck. It is not included in the shuffling.
 * This plugin is known to work with master branch as of 2015/10/06. It may, or may not, work with previous or future versions :)
-* I'm not sure about the `async: true` in the setup. Don't really know what it does.
 
 ## Known issues
 
