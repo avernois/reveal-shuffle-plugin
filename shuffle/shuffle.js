@@ -4,6 +4,10 @@ function Shuffled () {
 	options.keepFirsts = options.keepFirsts || 0;
 	options.keepLasts = options.keepLasts || 0;
 
+	function getTotalHorizontalSlides() { 
+		return document.querySelector("div.slides").children.length || 0;
+	}
+
 	console.log(options.keepFirsts);
 	console.log(options.keepLasts);
 
@@ -19,7 +23,7 @@ function Shuffled () {
 	}
 
 	var shuffled = [];
-	for (var i = 1 + options.keepFirsts; i != (Reveal.getTotalSlides() - options.keepLasts); ++i) shuffled.push(i)
+	for (var i = 1 + options.keepFirsts; i != (getTotalHorizontalSlides() - options.keepLasts); ++i) shuffled.push(i)
 	
 	shuffle(shuffled);
 
