@@ -1,5 +1,4 @@
 function Shuffled () {
-
 	var options = Reveal.getConfig().shuffle || {};
 	options.keepFirsts = options.keepFirsts || 0;
 	options.keepLasts = options.keepLasts || 0;
@@ -7,9 +6,6 @@ function Shuffled () {
 	function getTotalHorizontalSlides() { 
 		return document.querySelector("div.slides").children.length || 0;
 	}
-
-	console.log(options.keepFirsts);
-	console.log(options.keepLasts);
 
 	function shuffle(array) {
 		var currentIndex = array.length, temporaryValue, randomIndex ;
@@ -31,7 +27,7 @@ function Shuffled () {
 		shuffled.unshift(i);
 	}
 
-	for (var i = Reveal.getTotalSlides() - options.keepLasts; i != Reveal.getTotalSlides(); i++) {
+	for (var i = getTotalHorizontalSlides() - options.keepLasts; i != getTotalHorizontalSlides(); i++) {
 		shuffled.push(i);
 	}
 
@@ -42,15 +38,23 @@ function Shuffled () {
 		Reveal.slide(shuffled[currentIndex]);
 	}
 
+	this.downOrNext = function() {
+		if (Reveal.availableRoutes().down) {
+			var indices = Reveal.getIndices();
+			Reveal.slide(indices.h, indices.v + 1);
+		} else {
+			currentIndex += 1;
+			Reveal.slide(shuffled[currentIndex]);			
+		}
+	}
+
 	this.previous = function () {
 		currentIndex -= 1;
 		Reveal.slide(shuffled[currentIndex]);
 	}
 }
 
-
 var shuffled = new Shuffled();
-
 
 Reveal.configure({
 		keyboard: {
@@ -58,7 +62,7 @@ Reveal.configure({
 				shuffled.next();
 			},
 		32: function() { // space
-				shuffled.next();
+				shuffled.downOrNext();
 			},
 		37: function() { // left
 				shuffled.previous();
@@ -66,6 +70,5 @@ Reveal.configure({
 		39: function() { // right
 				shuffled.next();
 		}
-
   }
 });
